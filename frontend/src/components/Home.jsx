@@ -1,33 +1,14 @@
-import React, { useState, useEffect } from 'react';
+// import {useState} from 'react'
+import {Link} from 'react-router-dom'
 
 const Home = () => {
-    const [message, setMessage] = useState('');
 
-    useEffect(() => {
-        fetch('/api/recipe/hello')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                setMessage(data.message); // Assuming your API returns an object with a `message` field
-            })
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
-            });
-    }, []);
+  return (
+    <>
+    <h1 className='mb-4'>Wallcome to The Recipe App</h1>       
+    <Link to='/signup' className='bg-green-700 p-2 mx-4 text-white'>Get Started</Link> 
+    </>
+  )
+}
 
-    return (
-        <div class="flex items-center justify-center h-screen">
-        <div class="bg-cyan-600 text-3xl font-bold">
-            {message}
-            <h1 class="text-center text-red-400">Hello Tailwindcss!</h1>
-        </div>
-        </div>
-    );
-};
-
-export default Home;
+export default Home
