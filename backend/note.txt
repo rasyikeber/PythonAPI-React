@@ -1,3 +1,6 @@
+@activate the venv 
+source /home/rasy/.local/share/virtualenvs/backend-tVtF7TCV/bin/activate
+
 // github push documentation
 
 

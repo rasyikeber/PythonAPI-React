@@ -1,7 +1,53 @@
 // import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+import { useAuth ,logout} from '../auth'
+
+
+
+
+const LoggedInLinks = () => {
+    return (
+        <>
+          <Link to="/" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Home
+            </Link>
+          <Link to="/create-recipe" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Create Recipe
+            </Link>
+            <a href='#' onClick={()=>{logout()}} className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Logout
+            </a>
+        </>
+    )
+}
+
+
+const LoggedOutLinks = () => {
+    return (
+        <>
+           <Link to="/" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Home
+            </Link>
+            <Link to="/signup" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Signup
+            </Link>
+            <Link to="/login" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
+              Login
+            </Link>
+
+        </>
+    )
+}
+
+
+
+
+
 const NavBar = () => {
+
+  const [logged] = useAuth();
   return (
     <nav className="bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,21 +57,7 @@ const NavBar = () => {
               <Link  to="/" className="text-green-700 text-xl font-bold">RecipeApp</Link>
             </div>
             <div className="hidden md:ml-6 md:flex md:space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
-                Home
-              </Link>
-              <Link to="/signup" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
-                Signup
-              </Link>
-              <Link to="/login" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
-                Login
-              </Link>
-              <Link to="/create-recipe" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
-                Create Recipe
-              </Link>
-              <Link to="/logout" className="text-gray-700 hover:text-green-600 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium">
-                Logout
-              </Link>
+              {logged?<LoggedInLinks/>:<LoggedOutLinks/>}
             </div>
           </div>
           <div className="-mr-2 flex items-center md:hidden">
